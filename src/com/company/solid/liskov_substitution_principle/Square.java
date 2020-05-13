@@ -1,0 +1,22 @@
+package com.company.solid.liskov_substitution_principle;
+
+public class Square extends Rectangle{
+    public Square() {
+    }
+
+    public Square(int size) {
+        super(size, size);
+    }
+
+    @Override
+    public void setHeight(int height) {
+        super.setHeight(height);
+        super.setWidth(height);
+    }
+
+    @Override
+    public void setWidth(int width) {
+        super.setHeight(width);
+        super.setWidth(width);
+    }
+}
