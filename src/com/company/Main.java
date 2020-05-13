@@ -22,6 +22,12 @@ public class Main {
 
     public static void main(String[] args) {
         /*
+        04. Interface Segregation
+        Do not create more methods to implement than what is needed. Do not force classes
+        to implement methods they don't need
+        */
+
+        /*
         03. Liskov Substitution Principle
         You should be able to substitute a derived class for a base class
         In our case we have a Rectangle and a Square.
