@@ -1,4 +1,4 @@
-package com.company.solid.liskov_substitution_principle;
+package com.company.solid_principles.liskov_substitution_principle;
 
 public class RectangleFactory {
     public static Rectangle newRectangle(int width, int height){

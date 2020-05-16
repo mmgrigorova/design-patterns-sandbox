@@ -1,4 +1,4 @@
-package com.company.solid.single_responsibility_principle;
+package com.company.solid_principles.single_responsibility_principle;
 
 import java.io.File;
 import java.io.FileNotFoundException;

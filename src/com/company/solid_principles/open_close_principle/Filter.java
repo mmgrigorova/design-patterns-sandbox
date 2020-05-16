@@ -1,6 +1,6 @@
-package com.company.solid.open_close_principle;
+package com.company.solid_principles.open_close_principle;
 
-import com.company.solid.open_close_principle.specifications.Specification;
+import com.company.solid_principles.open_close_principle.specifications.Specification;
 
 import java.util.List;
 import java.util.stream.Stream;

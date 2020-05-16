@@ -1,7 +1,7 @@
-package com.company.solid.open_close_principle.specifications;
+package com.company.solid_principles.open_close_principle.specifications;
 
-import com.company.solid.open_close_principle.Product;
-import com.company.solid.open_close_principle.enums.Color;
+import com.company.solid_principles.open_close_principle.Product;
+import com.company.solid_principles.open_close_principle.enums.Color;
 
 public class ColorSpecification implements Specification<Product> {
     private Color color;

@@ -1,7 +1,7 @@
-package com.company.solid.open_close_principle;
+package com.company.solid_principles.open_close_principle;
 
-import com.company.solid.open_close_principle.enums.Color;
-import com.company.solid.open_close_principle.enums.Size;
+import com.company.solid_principles.open_close_principle.enums.Color;
+import com.company.solid_principles.open_close_principle.enums.Size;
 
 public class Product {
     private final Color color;

@@ -1,4 +1,4 @@
-package com.company.solid.single_responsibility_principle;
+package com.company.solid_principles.single_responsibility_principle;
 
 import java.util.ArrayList;
 import java.util.List;

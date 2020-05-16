@@ -1,18 +1,21 @@
 package com.company;
 
-import com.company.solid.liskov_substitution_principle.Demo;
-import com.company.solid.liskov_substitution_principle.Rectangle;
-import com.company.solid.liskov_substitution_principle.RectangleFactory;
-import com.company.solid.liskov_substitution_principle.Square;
-import com.company.solid.open_close_principle.Filter;
-import com.company.solid.open_close_principle.Product;
-import com.company.solid.open_close_principle.enums.Color;
-import com.company.solid.open_close_principle.enums.Size;
-import com.company.solid.open_close_principle.specifications.AndSpecification;
-import com.company.solid.open_close_principle.specifications.ColorSpecification;
-import com.company.solid.open_close_principle.specifications.SizeSpecification;
-import com.company.solid.single_responsibility_principle.Journal;
-import com.company.solid.single_responsibility_principle.Persistence;
+import com.company.solid_principles.dependency_inversion.Person;
+import com.company.solid_principles.dependency_inversion.Relationships;
+import com.company.solid_principles.dependency_inversion.Research;
+import com.company.solid_principles.liskov_substitution_principle.Demo;
+import com.company.solid_principles.liskov_substitution_principle.Rectangle;
+import com.company.solid_principles.liskov_substitution_principle.RectangleFactory;
+import com.company.solid_principles.liskov_substitution_principle.Square;
+import com.company.solid_principles.open_close_principle.Filter;
+import com.company.solid_principles.open_close_principle.Product;
+import com.company.solid_principles.open_close_principle.enums.Color;
+import com.company.solid_principles.open_close_principle.enums.Size;
+import com.company.solid_principles.open_close_principle.specifications.AndSpecification;
+import com.company.solid_principles.open_close_principle.specifications.ColorSpecification;
+import com.company.solid_principles.open_close_principle.specifications.SizeSpecification;
+import com.company.solid_principles.single_responsibility_principle.Journal;
+import com.company.solid_principles.single_responsibility_principle.Persistence;
 
 import java.io.FileNotFoundException;
 import java.util.Arrays;
@@ -21,6 +24,26 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
+        /*
+        05. Dependency Inversion
+        A. High-level modules should not depend on low-level modules.
+        Both should depend on abstractions.
+
+        B. Abstractions should not depend on details.
+        Details should depend on abstractions
+         */
+
+        Person parent = new Person("John");
+        Person child1 = new Person("Chris");
+        Person child2 = new Person("Matt");
+
+        // low-level module
+        Relationships relationships = new Relationships();
+        relationships.addParentAndChild(parent, child1);
+        relationships.addParentAndChild(parent, child2);
+
+        new Research(relationships);
+
         /*
         04. Interface Segregation
         Do not create more methods to implement than what is needed. Do not force classes

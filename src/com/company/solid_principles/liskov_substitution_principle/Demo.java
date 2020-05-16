@@ -1,4 +1,4 @@
-package com.company.solid.liskov_substitution_principle;
+package com.company.solid_principles.liskov_substitution_principle;
 
 public class Demo {
     public static void useIt(Rectangle r){
