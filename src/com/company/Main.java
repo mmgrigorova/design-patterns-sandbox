@@ -1,6 +1,8 @@
 package com.company;
 
 import com.company.design_patterns.builder.CodeBuilder;
+import com.company.design_patterns.factory.PersonFactory;
+import com.company.design_patterns.factory.PersonInst;
 import com.company.solid_principles.dependency_inversion.Person;
 import com.company.solid_principles.dependency_inversion.Relationships;
 import com.company.solid_principles.dependency_inversion.Research;
@@ -25,6 +27,14 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
+        /*
+        Factory Pattern
+        * */
+        System.out.println("--- The Factory Pattern ---");
+        PersonInst p0 = PersonFactory.createPerson("John");
+        System.out.println(p0);
+        PersonInst p1 = PersonFactory.createPerson("Margaret");
+        System.out.println(p1);
         /*
         Builder Pattern
         * */
