@@ -5,6 +5,8 @@ import com.company.design_patterns.factory.PersonFactory;
 import com.company.design_patterns.factory.PersonInst;
 import com.company.design_patterns.prototype.Line;
 import com.company.design_patterns.prototype.Point;
+import com.company.design_patterns.singleton.ConfigurableRecordFinder;
+import com.company.design_patterns.singleton.SingletonDatabase;
 import com.company.solid_principles.dependency_inversion.Person;
 import com.company.solid_principles.dependency_inversion.Relationships;
 import com.company.solid_principles.dependency_inversion.Research;
@@ -21,10 +23,8 @@ import com.company.solid_principles.open_close_principle.specifications.ColorSpe
 import com.company.solid_principles.open_close_principle.specifications.SizeSpecification;
 import com.company.solid_principles.single_responsibility_principle.Journal;
 import com.company.solid_principles.single_responsibility_principle.Persistence;
-import com.sun.org.apache.xml.internal.serializer.SerializationHandler;
 
 import java.io.FileNotFoundException;
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,11 +32,18 @@ public class Main {
 
     public static void main(String[] args) {
         /*
+        Singleton Pattern - example with lazy initialization and dependency injection,
+        the latter allowing for testability
+         */
+        ConfigurableRecordFinder finder = new ConfigurableRecordFinder(SingletonDatabase.getInstance());
+        int total = finder.getTotalPopulation(Arrays.asList("Mexico", "Sofia"));
+        System.out.println("Total population: " + total);
+        /*
         Prototype Pattern - perform deep copies of object
         * */
         System.out.println();
         System.out.println("--- The Prototype Pattern ---");
-        Line line = new Line(new Point(3,4), new Point(5, 6));
+        Line line = new Line(new Point(3, 4), new Point(5, 6));
         Line line2 = line.deepCopy();
         line2.start = new Point(7, 8);
 
@@ -101,7 +108,7 @@ public class Main {
         */
         System.out.println();
         System.out.println("--- Liskov Substitution Principle ---");
-        Rectangle rc = new Rectangle(2,3);
+        Rectangle rc = new Rectangle(2, 3);
         Demo.useIt(rc);
 
         //Wrong: Here we can have unexpected results.
