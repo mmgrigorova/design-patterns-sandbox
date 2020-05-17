@@ -34,6 +34,7 @@ public class Main {
         /*
         Prototype Pattern - perform deep copies of object
         * */
+        System.out.println();
         System.out.println("--- The Prototype Pattern ---");
         Line line = new Line(new Point(3,4), new Point(5, 6));
         Line line2 = line.deepCopy();
@@ -45,6 +46,7 @@ public class Main {
          /*
         Factory Pattern - the single purpose of a factory is to create objects
         * */
+        System.out.println();
         System.out.println("--- The Factory Pattern ---");
         PersonInst p0 = PersonFactory.createPerson("John");
         System.out.println(p0);
@@ -53,6 +55,7 @@ public class Main {
         /*
         Builder Pattern
         * */
+        System.out.println();
         System.out.println("--- The Builder Pattern ---");
         CodeBuilder cb = new CodeBuilder("Person")
                 .addField("name", "String")
@@ -68,6 +71,7 @@ public class Main {
         B. Abstractions should not depend on details.
         Details should depend on abstractions
          */
+        System.out.println();
         System.out.println("--- Dependency Inversion ---");
         Person parent = new Person("John");
         Person child1 = new Person("Chris");
@@ -85,6 +89,7 @@ public class Main {
         Do not create more methods to implement than what is needed. Do not force classes
         to implement methods they don't need
         */
+        System.out.println();
         System.out.println("--- Interface Segregation - no printable example ---");
         /*
         03. Liskov Substitution Principle
@@ -94,6 +99,7 @@ public class Main {
         We can use the Factory design pattern in this situation and get rid of the Square class altogether.
         The only difference with the rectangle is that the sides have the same width.
         */
+        System.out.println();
         System.out.println("--- Liskov Substitution Principle ---");
         Rectangle rc = new Rectangle(2,3);
         Demo.useIt(rc);
@@ -113,6 +119,7 @@ public class Main {
            that are open for extension
            If more we need to combine criteria, we can create AndSpecification<T> interfaces.
            */
+        System.out.println();
         System.out.println("--- Open-close principle ---");
 
         Product apple = new Product("apple", Color.RED, Size.SMALL);
@@ -131,6 +138,7 @@ public class Main {
            01. Single responsibility principle demo
            A Journal class handles only the entries, there is a separate class handling persistence.
             */
+        System.out.println();
         System.out.println("--- Single responsibility principle ---");
 
         Journal journal = new Journal();
