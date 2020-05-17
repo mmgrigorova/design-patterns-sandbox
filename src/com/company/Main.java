@@ -3,6 +3,8 @@ package com.company;
 import com.company.design_patterns.builder.CodeBuilder;
 import com.company.design_patterns.factory.PersonFactory;
 import com.company.design_patterns.factory.PersonInst;
+import com.company.design_patterns.prototype.Line;
+import com.company.design_patterns.prototype.Point;
 import com.company.solid_principles.dependency_inversion.Person;
 import com.company.solid_principles.dependency_inversion.Relationships;
 import com.company.solid_principles.dependency_inversion.Research;
@@ -19,8 +21,10 @@ import com.company.solid_principles.open_close_principle.specifications.ColorSpe
 import com.company.solid_principles.open_close_principle.specifications.SizeSpecification;
 import com.company.solid_principles.single_responsibility_principle.Journal;
 import com.company.solid_principles.single_responsibility_principle.Persistence;
+import com.sun.org.apache.xml.internal.serializer.SerializationHandler;
 
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,7 +32,18 @@ public class Main {
 
     public static void main(String[] args) {
         /*
-        Factory Pattern
+        Prototype Pattern - perform deep copies of object
+        * */
+        System.out.println("--- The Prototype Pattern ---");
+        Line line = new Line(new Point(3,4), new Point(5, 6));
+        Line line2 = line.deepCopy();
+        line2.start = new Point(7, 8);
+
+        System.out.println(line);
+        System.out.println(line2);
+
+         /*
+        Factory Pattern - the single purpose of a factory is to create objects
         * */
         System.out.println("--- The Factory Pattern ---");
         PersonInst p0 = PersonFactory.createPerson("John");
