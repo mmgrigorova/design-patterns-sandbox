@@ -32,45 +32,68 @@ public class Main {
 
     public static void main(String[] args) {
         /*
-        Singleton Pattern - example with lazy initialization and dependency injection,
-        the latter allowing for testability
-         */
-        ConfigurableRecordFinder finder = new ConfigurableRecordFinder(SingletonDatabase.getInstance());
-        int total = finder.getTotalPopulation(Arrays.asList("Mexico", "Sofia"));
-        System.out.println("Total population: " + total);
-        /*
-        Prototype Pattern - perform deep copies of object
-        * */
+           01. Single responsibility principle demo
+           A Journal class handles only the entries, there is a separate class handling persistence.
+            */
         System.out.println();
-        System.out.println("--- The Prototype Pattern ---");
-        Line line = new Line(new Point(3, 4), new Point(5, 6));
-        Line line2 = line.deepCopy();
-        line2.start = new Point(7, 8);
+        System.out.println("--- Single responsibility principle ---");
 
-        System.out.println(line);
-        System.out.println(line2);
+        Journal journal = new Journal();
+        journal.add("I went hiking yesterday");
+        journal.add("I ate soup today");
 
-         /*
-        Factory Pattern - the single purpose of a factory is to create objects
-        * */
+        Persistence p = new Persistence();
+        try {
+            p.saveToFile(journal, "srp-test", true);
+            System.out.println("Saved to 'srp-test' file");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        /* 02. Open-close principle
+           Opened for extension, closed for modification
+           This example uses the Specification pattern which uses generic Specification<T> and Filter<T> interfaces
+           that are open for extension
+           If more we need to combine criteria, we can create AndSpecification<T> interfaces.
+           */
         System.out.println();
-        System.out.println("--- The Factory Pattern ---");
-        PersonInst p0 = PersonFactory.createPerson("John");
-        System.out.println(p0);
-        PersonInst p1 = PersonFactory.createPerson("Margaret");
-        System.out.println(p1);
-        /*
-        Builder Pattern
-        * */
+        System.out.println("--- Open-close principle ---");
+
+        Product apple = new Product("apple", Color.RED, Size.SMALL);
+        Product book = new Product("book", Color.GREEN, Size.SMALL);
+        Product house = new Product("house", Color.BLUE, Size.HUGE);
+        List<Product> products = Arrays.asList(apple, book, house);
+
+        Filter filter = new Filter();
+        filter.filter(products, new ColorSpecification(Color.RED)).forEach(System.out::println);
+        filter.filter(products, new SizeSpecification(Size.HUGE)).forEach(System.out::println);
+
+        filter.filter(products, new AndSpecification<>(new ColorSpecification(Color.GREEN), new SizeSpecification(Size.SMALL)))
+                .forEach(System.out::println);
+
+      /*
+        03. Liskov Substitution Principle
+        You should be able to substitute a derived class for a base class
+        In our case we have a Rectangle and a Square.
+        We have incorrect behavior through inheritance
+        We can use the Factory design pattern in this situation and get rid of the Square class altogether.
+        The only difference with the rectangle is that the sides have the same width.
+        */
         System.out.println();
-        System.out.println("--- The Builder Pattern ---");
-        CodeBuilder cb = new CodeBuilder("Person")
-                .addField("name", "String")
-                .addField("age", "int");
+        System.out.println("--- Liskov Substitution Principle ---");
+        Rectangle rc = new Rectangle(2, 3);
+        Demo.useIt(rc);
 
-        System.out.println(cb);
+        //Wrong: Here we can have unexpected results.
+        Rectangle sq = new Square();
+        sq.setHeight(5);
+        Demo.useIt(sq);
 
-        /*
+        //Correct: The Factory
+        Rectangle square = RectangleFactory.newSquare(5);
+        Demo.useIt(square);
+
+             /*
         05. Dependency Inversion
         A. High-level modules should not depend on low-level modules.
         Both should depend on abstractions.
@@ -98,66 +121,49 @@ public class Main {
         */
         System.out.println();
         System.out.println("--- Interface Segregation - no printable example ---");
-        /*
-        03. Liskov Substitution Principle
-        You should be able to substitute a derived class for a base class
-        In our case we have a Rectangle and a Square.
-        We have incorrect behavior through inheritance
-        We can use the Factory design pattern in this situation and get rid of the Square class altogether.
-        The only difference with the rectangle is that the sides have the same width.
-        */
-        System.out.println();
-        System.out.println("--- Liskov Substitution Principle ---");
-        Rectangle rc = new Rectangle(2, 3);
-        Demo.useIt(rc);
-
-        //Wrong: Here we can have unexpected results.
-        Rectangle sq = new Square();
-        sq.setHeight(5);
-        Demo.useIt(sq);
-
-        //Correct: The Factory
-        Rectangle square = RectangleFactory.newSquare(5);
-        Demo.useIt(square);
-
-        /* 02. Open-close principle
-           Opened for extension, closed for modification
-           This example uses the Specification pattern which uses generic Specification<T> and Filter<T> interfaces
-           that are open for extension
-           If more we need to combine criteria, we can create AndSpecification<T> interfaces.
-           */
-        System.out.println();
-        System.out.println("--- Open-close principle ---");
-
-        Product apple = new Product("apple", Color.RED, Size.SMALL);
-        Product book = new Product("book", Color.GREEN, Size.SMALL);
-        Product house = new Product("house", Color.BLUE, Size.HUGE);
-        List<Product> products = Arrays.asList(apple, book, house);
-
-        Filter filter = new Filter();
-        filter.filter(products, new ColorSpecification(Color.RED)).forEach(System.out::println);
-        filter.filter(products, new SizeSpecification(Size.HUGE)).forEach(System.out::println);
-
-        filter.filter(products, new AndSpecification<>(new ColorSpecification(Color.GREEN), new SizeSpecification(Size.SMALL)))
-                .forEach(System.out::println);
 
         /*
-           01. Single responsibility principle demo
-           A Journal class handles only the entries, there is a separate class handling persistence.
-            */
+        Builder Pattern
+        * */
         System.out.println();
-        System.out.println("--- Single responsibility principle ---");
+        System.out.println("--- The Builder Pattern ---");
+        CodeBuilder cb = new CodeBuilder("Person")
+                .addField("name", "String")
+                .addField("age", "int");
 
-        Journal journal = new Journal();
-        journal.add("I went hiking yesterday");
-        journal.add("I ate soup today");
+        System.out.println(cb);
 
-        Persistence p = new Persistence();
-        try {
-            p.saveToFile(journal, "srp-test", true);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        /*
+        Factory Pattern - the single purpose of a factory is to create objects
+        * */
+        System.out.println();
+        System.out.println("--- The Factory Pattern ---");
+        PersonInst p0 = PersonFactory.createPerson("John");
+        System.out.println(p0);
+        PersonInst p1 = PersonFactory.createPerson("Margaret");
+        System.out.println(p1);
+
+        /*
+        Prototype Pattern - perform deep copies of object
+        * */
+        System.out.println();
+        System.out.println("--- The Prototype Pattern ---");
+        Line line = new Line(new Point(3, 4), new Point(5, 6));
+        Line line2 = line.deepCopy();
+        line2.start = new Point(7, 8);
+
+        System.out.println(line);
+        System.out.println(line2);
+
+        /*
+        Singleton Pattern - example with lazy initialization and dependency injection,
+        the latter allowing for testability
+         */
+        System.out.println();
+        System.out.println("--- The Singleton Pattern ---");
+        ConfigurableRecordFinder finder = new ConfigurableRecordFinder(SingletonDatabase.getInstance());
+        int total = finder.getTotalPopulation(Arrays.asList("Mexico", "Sofia"));
+        System.out.println("Total population: " + total);
 
     }
 }
