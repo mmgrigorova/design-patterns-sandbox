@@ -165,5 +165,13 @@ public class Main {
         int total = finder.getTotalPopulation(Arrays.asList("Mexico", "Sofia"));
         System.out.println("Total population: " + total);
 
+        /*
+        Adapter pattern
+        A synthetic example of using using adapter.
+        The demo is available in the com.company.design_patterns.adapter.Evaluate class.
+         */
+        System.out.println();
+        System.out.println("--- The Adapter Pattern ---");
+        System.out.println("A synthetic example is available in the Evaluate test class");
     }
 }
