@@ -1,5 +1,8 @@
 package com.company;
 
+import com.company.design_patterns.bridge.RasterRenderer;
+import com.company.design_patterns.bridge.Renderer;
+import com.company.design_patterns.bridge.Triangle;
 import com.company.design_patterns.builder.CodeBuilder;
 import com.company.design_patterns.factory.PersonFactory;
 import com.company.design_patterns.factory.PersonInst;
@@ -173,5 +176,17 @@ public class Main {
         System.out.println();
         System.out.println("--- The Adapter Pattern ---");
         System.out.println("A synthetic example is available in the Evaluate test class");
+
+        /*
+        * Bridge Pattern
+        * Avoid Cartesian product when combining classes with specific implementations.
+        * E.g. Instead of having SquareRasterRenderer and SquareVendorRenderer, we can inject the
+        * Renderer as a dependency
+        * */
+        System.out.println();
+        System.out.println("--- The Bridge Pattern ---");
+        Renderer raster = new RasterRenderer();
+        Triangle triangle = new Triangle(raster);
+        System.out.println(triangle);
     }
 }
