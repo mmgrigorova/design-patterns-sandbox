@@ -4,6 +4,9 @@ import com.company.design_patterns.bridge.RasterRenderer;
 import com.company.design_patterns.bridge.Renderer;
 import com.company.design_patterns.bridge.Triangle;
 import com.company.design_patterns.builder.CodeBuilder;
+import com.company.design_patterns.composite.ManyValues;
+import com.company.design_patterns.composite.MyList;
+import com.company.design_patterns.composite.SingleValue;
 import com.company.design_patterns.factory.PersonFactory;
 import com.company.design_patterns.factory.PersonInst;
 import com.company.design_patterns.prototype.Line;
@@ -188,5 +191,20 @@ public class Main {
         Renderer raster = new RasterRenderer();
         Triangle triangle = new Triangle(raster);
         System.out.println(triangle);
+
+        /*
+        * Composite Pattern
+        * Allows us to treat single(scalar) and composite objects uniformly,
+        * i.e. have the same API
+        * A single object can masquerade itself as a collection,
+        * by returning a single element collection, containing only 'this'.
+        * */
+        System.out.println();
+        System.out.println("--- The Composite Pattern ---");
+        SingleValue singleValue = new SingleValue(11);
+        ManyValues otherValues = new ManyValues();
+        otherValues.add(22);
+        otherValues.add(33);
+        System.out.println(new MyList(Arrays.asList(singleValue, otherValues)).sum());
     }
 }
