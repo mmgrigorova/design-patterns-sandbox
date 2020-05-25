@@ -206,5 +206,15 @@ public class Main {
         otherValues.add(22);
         otherValues.add(33);
         System.out.println(new MyList(Arrays.asList(singleValue, otherValues)).sum());
+
+        /*
+        * The Decorator pattern
+        * Facilitates adding behavior to individual objects without directly inheriting
+        * from them.
+        * */
+        System.out.println();
+        System.out.println("--- The Decorator Pattern ---");
+        System.out.println("Check the Evaluate class in 'decorator' package");
+
     }
 }
