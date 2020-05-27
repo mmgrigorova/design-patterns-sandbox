@@ -216,5 +216,13 @@ public class Main {
         System.out.println("--- The Decorator Pattern ---");
         System.out.println("Check the Evaluate class in 'decorator' package");
 
+        /*
+         * The Façade pattern
+         * Exposing several components through a single interface
+         * Provide simple and usable interface to a complicated and sophisticated code.
+         * */
+        System.out.println();
+        System.out.println("--- The Façade Pattern ---");
+        System.out.println("No particular code example here");
     }
 }
