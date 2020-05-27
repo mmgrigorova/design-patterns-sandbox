@@ -9,6 +9,7 @@ import com.company.design_patterns.composite.MyList;
 import com.company.design_patterns.composite.SingleValue;
 import com.company.design_patterns.factory.PersonFactory;
 import com.company.design_patterns.factory.PersonInst;
+import com.company.design_patterns.flyweight.Sentence;
 import com.company.design_patterns.prototype.Line;
 import com.company.design_patterns.prototype.Point;
 import com.company.design_patterns.singleton.ConfigurableRecordFinder;
@@ -224,5 +225,16 @@ public class Main {
         System.out.println();
         System.out.println("--- The Façade Pattern ---");
         System.out.println("No particular code example here");
+
+
+        /*
+        * Flyweight pattern
+        * Save space by storing repetitive volumes of data through indexes.
+        * */
+        System.out.println();
+        System.out.println("--- The Flyweight Pattern ---");
+        Sentence sentence = new Sentence("Hello my world");
+        sentence.getWord(2).capitalize = true;
+        System.out.println(sentence);
     }
 }
